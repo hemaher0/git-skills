@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reviewing Before Commit"
+  short_description: "Review commit content, secrets, and disclosure scope"
