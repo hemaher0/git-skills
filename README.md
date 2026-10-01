@@ -77,28 +77,49 @@ field does not require setup before ordinary Git work.
 For shared policy choices, adapt the
 [project policy template](plugins/git-skills/templates/AGENTS.md) into effective
 project instructions or use the existing referenced Git policy. Use the
-[local template](plugins/git-skills/templates/AGENTS.local.md) only for a selected
-host transport or worktree path override. Both templates are under
+[local configuration template](plugins/git-skills/templates/AGENTS.local.md)
+to create or update root `AGENTS.local.md` during every installation, even
+without a separate request for the file. Both templates are under
 `.agents/vendor/git-skills/plugins/git-skills/templates/` in this setup:
 
 1. Inspect repository and environment facts and reuse established decisions.
    Confirm consequential policy choices that existing instructions do not
    settle with the project owner before dependent setup. An optional integration can remain
    unconfigured.
-2. Keep portable policy in its project home. Write only necessary local
-   overrides to `AGENTS.local.md`; existing Git/host configuration may already
-   resolve them. Inspect branch, remote, checkout and actual permission state
+   An unresolved choice is pending, not evidence that a setting is unnecessary.
+2. Keep portable policy in its project home. Merge the local template's Git
+   section into `AGENTS.local.md` and fill only necessary host transport or
+   worktree path overrides; existing Git/host configuration may already resolve
+   them. If none are needed, write `Local overrides: None. Use effective project settings and skill defaults.`
+   in that section. Inspect branch, remote, checkout and actual permission state
    directly. Keep ownership and reviewed commit coverage in existing records.
-   Preserve other sections; omit unused/default fields and duplicate procedures.
-3. When a local override is used, ensure effective root instructions (`AGENTS.md`, or `AGENTS.override.md`
-   when it takes precedence) direct reading the local file, for example:
+   Preserve other packages' sections; remove unused template fields and avoid
+   duplicated defaults or procedures.
+3. Connect the local file to root instructions. If `AGENTS.md` exists, preserve
+   it and add the following instruction unless it already reads or resolves to
+   the local file:
 
    ```markdown
    Read and follow root AGENTS.local.md when it exists.
    ```
-4. Check actual marketplace paths/name, skill availability, and policy resolution
-   including any selected local override. Report established policy, changed configuration,
-   and any unresolved choice before its dependent operation.
+
+   If `AGENTS.md` is absent, the recommended connection is a relative symbolic
+   link created from the project root, after writing `AGENTS.local.md`:
+
+   ```bash
+   ln -s AGENTS.local.md AGENTS.md
+   ```
+
+   Preserve existing files and links; do not replace them or add a self-reference
+   to a linked local file. If `AGENTS.override.md` takes precedence, ensure it
+   also reads the local file. Verify the effective connection and link targets.
+4. Before declaring installation complete, verify that `AGENTS.local.md`
+   contains the resolved Git settings or the explicit no-override declaration,
+   has no unused placeholders, and is read through effective root instructions.
+   Check actual marketplace paths/name, skill availability, and policy
+   resolution. Report established policy, changed configuration, and any
+   unresolved choice before its dependent operation. Required unresolved choices
+   remain pending; plugin availability alone does not complete configuration.
 
 Resolve an essential missing fact, rule, or authorization before the operation
 it affects. Unrelated unset optional fields do not block that operation.

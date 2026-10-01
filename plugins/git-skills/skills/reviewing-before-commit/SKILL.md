@@ -21,10 +21,13 @@ candidate, its target, and intended disclosure scope.
 
 The [project policy template](../../templates/AGENTS.md) is an optional aid;
 use an existing policy home when one governs the project. The
-[local template](../../templates/AGENTS.local.md) is only for selected host/path
-overrides. Shared rules and inspected Git/approval state need no local file.
-Unrelated or unset optional fields do not block
-this work. Honor explicit project requirements for policy setup, and resolve
+[local configuration template](../../templates/AGENTS.local.md) supplies the
+package section for root `AGENTS.local.md`, created or updated during installation
+even when no host/path overrides are needed. Follow the source README for its
+instruction connection. Keep shared rules in their policy home and inspect
+Git/approval state directly. Ordinary Git work does not initialize installation
+configuration; unrelated or unset optional fields do not block this work.
+Honor explicit project requirements for policy setup, and resolve
 an essential missing fact, rule, or authorization before the operation it
 affects. Read-only inspection may proceed. Policy files do not grant host
 permissions; existing user authorization and actual host controls still apply.
