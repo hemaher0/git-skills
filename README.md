@@ -69,65 +69,53 @@ enabled = true
 
 ### Repository Git policy
 
-Read existing project instructions, including `AGENTS.md`, `AGENTS.local.md`
-when present or required, and referenced Git policy. Check the rules material
-to the intended operation; an absent optional policy file or unrelated template
-field does not require setup before ordinary Git work.
+Writing root `AGENTS.local.md` is a required installation step.
 
-For shared policy choices, adapt the
-[project policy template](plugins/git-skills/templates/AGENTS.md) into effective
-project instructions or use the existing referenced Git policy. Use the
-[local configuration template](plugins/git-skills/templates/AGENTS.local.md)
-to create or update root `AGENTS.local.md` during every installation, even
-without a separate request for the file. Both templates are under
-`.agents/vendor/git-skills/plugins/git-skills/templates/` in this setup:
+1. Read existing project instructions and Git policy, the
+   [project policy template](plugins/git-skills/templates/AGENTS.md) and the
+   [local configuration template](plugins/git-skills/templates/AGENTS.local.md).
+   Keep portable policy in its existing home, using the project template for
+   applicable project choices.
+2. Create the local file from its template, or merge the Git section into the
+   existing file. Replace applicable placeholders with actual host transport
+   or worktree path values. Preserve established settings and other packages'
+   sections. Remove fields that do not apply.
+3. Where settings are maintained elsewhere, reference their actual source and
+   verify its contents. Keep reusable procedures in
+   [using-git-worktrees](plugins/git-skills/skills/using-git-worktrees/SKILL.md),
+   [reviewing-before-commit](plugins/git-skills/skills/reviewing-before-commit/SKILL.md)
+   and [finishing-a-development-branch](plugins/git-skills/skills/finishing-a-development-branch/SKILL.md).
+   Inspect branch, remote, checkout and actual permissions from Git and the
+   host; keep ownership and review coverage in existing work records.
+4. Connect the local file to root instructions using the procedure below.
 
-1. Inspect repository and environment facts and reuse established decisions.
-   Confirm consequential policy choices that existing instructions do not
-   settle with the project owner before dependent setup. An optional integration can remain
-   unconfigured.
-   An unresolved choice is pending, not evidence that a setting is unnecessary.
-2. Keep portable policy in its project home. Merge the local template's Git
-   section into `AGENTS.local.md` and fill only necessary host transport or
-   worktree path overrides; existing Git/host configuration may already resolve
-   them. If none are needed, write `Local overrides: None. Use effective project settings and skill defaults.`
-   in that section. Inspect branch, remote, checkout and actual permission state
-   directly. Keep ownership and reviewed commit coverage in existing records.
-   Preserve other packages' sections; remove unused template fields and avoid
-   duplicated defaults or procedures.
-3. Connect the local file to root instructions. If `AGENTS.md` exists, preserve
-   it and add the following instruction unless it already reads or resolves to
-   the local file:
+If root `AGENTS.md` exists, preserve it and add this instruction unless it
+already reads or resolves to the local file:
 
-   ```markdown
-   Read and follow root AGENTS.local.md when it exists.
-   ```
+```markdown
+Read and follow root AGENTS.local.md when it exists.
+```
 
-   If `AGENTS.md` is absent, the recommended connection is a relative symbolic
-   link created from the project root, after writing `AGENTS.local.md`:
+If `AGENTS.md` is absent, the recommended connection is a relative symbolic
+link from the project root, after writing `AGENTS.local.md`:
 
-   ```bash
-   ln -s AGENTS.local.md AGENTS.md
-   ```
+```bash
+ln -s AGENTS.local.md AGENTS.md
+```
 
-   Preserve existing files and links; do not replace them or add a self-reference
-   to a linked local file. If `AGENTS.override.md` takes precedence, ensure it
-   also reads the local file. Verify the effective connection and link targets.
-4. Before declaring installation complete, verify that `AGENTS.local.md`
-   contains the resolved Git settings or the explicit no-override declaration,
-   has no unused placeholders, and is read through effective root instructions.
-   Check actual marketplace paths/name, skill availability, and policy
-   resolution. Report established policy, changed configuration, and any
-   unresolved choice before its dependent operation. Required unresolved choices
-   remain pending; plugin availability alone does not complete configuration.
+Preserve existing files and links and avoid self-references. If
+`AGENTS.override.md` takes precedence, ensure it reads the local file.
 
-Resolve an essential missing fact, rule, or authorization before the operation
-it affects. Unrelated unset optional fields do not block that operation.
-Explicit project requirements for complete policy setup still apply. Read-only
-inspection may proceed. Policy files record existing rules and permissions;
-they do not grant host permissions.
-The skills also work with existing project instructions; using every template
-field is not an installation prerequisite.
+Before completing installation, read the completed file and any referenced
+configuration. Verify that applicable values are filled, no placeholders
+remain, configured paths resolve, and effective instructions read the local
+file. A generic "use defaults" statement does not replace filled settings.
+Check actual marketplace paths/name, skill availability and policy resolution.
+
+Ordinary Git work follows the existing project policy and actual host controls.
+Resolve essential facts, rules and authorization for the intended operation;
+unrelated unused template fields do not block that operation. Configuration
+files do not grant permissions.
 
 Open the target project as a trusted project in Codex, restart the app if using
 the desktop client, and start a **new Codex session**. Project configuration is
