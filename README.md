@@ -6,9 +6,8 @@ workspace management, commit review, push verification, and integration.
 | Skill | Role |
 | --- | --- |
 | [using-git-worktrees](plugins/git-skills/skills/using-git-worktrees/SKILL.md) | Decide separately whether a task needs a branch or another checkout; assign concurrent writers without creating redundant resources. |
-| [finishing-a-development-branch](plugins/git-skills/skills/finishing-a-development-branch/SKILL.md) | Verify handoffs and branch work, obtain a decision before changing the primary branch, and retain or clean up resources deliberately. |
+| [finishing-a-development-branch](plugins/git-skills/skills/finishing-a-development-branch/SKILL.md) | Verify handoffs and branch work, confirm authorization before changing the primary branch, and retain or clean up resources deliberately. |
 | [reviewing-before-commit](plugins/git-skills/skills/reviewing-before-commit/SKILL.md) | Review actual candidate content and messages for secrets and intended disclosure scope before creating or recreating a commit. |
-| [reviewing-before-push](plugins/git-skills/skills/reviewing-before-push/SKILL.md) | Verify that outgoing commits have valid content reviews covering the actual destination and refs. |
 
 For example, a solo edit in a suitable checkout uses that checkout. A review
 policy may require a branch without another worktree. Concurrent writers in
@@ -18,7 +17,14 @@ and checkout for follow-up rather than trigger immediate cleanup.
 
 ## Install for a project
 
-Use a repository marketplace and project configuration. Run these commands from
+Configure the project plugin as described below. The skills follow existing
+project Git instructions; the optional policy template helps record rules
+when the project needs them.
+Complete applicable project configuration using the steps below, preserving
+existing instructions and established choices.
+
+Use a repository marketplace and project configuration. Reuse a suitable source
+checkout when present. For a first setup, run these commands from
 the **target project's root**, with Git access to this repository:
 
 ```bash
@@ -61,6 +67,47 @@ Merge this setting into the target project's `.codex/config.toml`:
 enabled = true
 ```
 
+### Repository Git policy
+
+Read existing project instructions, including `AGENTS.md`, `AGENTS.local.md`
+when present or required, and referenced Git policy. Check the rules material
+to the intended operation; an absent optional policy file or unrelated template
+field does not require setup before ordinary Git work.
+
+For shared policy choices, adapt the
+[project policy template](plugins/git-skills/templates/AGENTS.md) into effective
+project instructions or use the existing referenced Git policy. Use the
+[local template](plugins/git-skills/templates/AGENTS.local.md) only for a selected
+host transport or worktree path override. Both templates are under
+`.agents/vendor/git-skills/plugins/git-skills/templates/` in this setup:
+
+1. Inspect repository and environment facts and reuse established decisions.
+   Confirm consequential policy choices that existing instructions do not
+   settle with the project owner before dependent setup. An optional integration can remain
+   unconfigured.
+2. Keep portable policy in its project home. Write only necessary local
+   overrides to `AGENTS.local.md`; existing Git/host configuration may already
+   resolve them. Inspect branch, remote, checkout and actual permission state
+   directly. Keep ownership and reviewed commit coverage in existing records.
+   Preserve other sections; omit unused/default fields and duplicate procedures.
+3. When a local override is used, ensure effective root instructions (`AGENTS.md`, or `AGENTS.override.md`
+   when it takes precedence) direct reading the local file, for example:
+
+   ```markdown
+   Read and follow root AGENTS.local.md when it exists.
+   ```
+4. Check actual marketplace paths/name, skill availability, and policy resolution
+   including any selected local override. Report established policy, changed configuration,
+   and any unresolved choice before its dependent operation.
+
+Resolve an essential missing fact, rule, or authorization before the operation
+it affects. Unrelated unset optional fields do not block that operation.
+Explicit project requirements for complete policy setup still apply. Read-only
+inspection may proceed. Policy files record existing rules and permissions;
+they do not grant host permissions.
+The skills also work with existing project instructions; using every template
+field is not an installation prerequisite.
+
 Open the target project as a trusted project in Codex, restart the app if using
 the desktop client, and start a **new Codex session**. Project configuration is
 loaded only for trusted projects. The marketplace source and enablement belong
@@ -85,49 +132,20 @@ the project setup, remove that configuration entry and only the `git-skills`
 entry from `.agents/plugins/marketplace.json`. Keep other plugins' entries.
 The source checkout can be removed separately once it is no longer needed.
 
-## Configure repository Git policy
-
-The template is available in the project checkout at
-`.agents/vendor/git-skills/plugins/git-skills/templates/AGENTS.local.md`.
-Use the [AGENTS.local.md template](plugins/git-skills/templates/AGENTS.local.md)
-to fill in the `Git Policy` section in the target repository's root
-`AGENTS.local.md`. If that file already exists, add the section without
-replacing its other settings. Fill or remove each applicable placeholder.
-The template records local choices about branch and worktree creation,
-parallel writers, sandbox DNS, clone/fetch transport, permission escalation,
-commit disclosure scope, primary-branch history shape, allowed merge methods,
-integration approval, and checks for secrets and disclosure before commit
-creation. Push checks verify coverage for the actual outgoing refs and audience.
-A placeholder supplies no rule; a filled
-field cannot grant a host permission that has not actually been approved.
-
-Reference the local file from the repository's `AGENTS.md` if agents without
-this plugin also need to read it. Keep rules shared by the whole team in the
-repository's tracked instructions; use `AGENTS.local.md` for local choices.
-The Git skills read the local policy when present, and continue using
-repository instructions when it is absent.
-
-When Superpowers also supplies Git workflows, follow the
-[migration procedure](docs/migrating-from-superpowers.md) to assign one Git
-provider and update its callers. Use its portable, responsibility-based
-contract in development skills and worker prompts: an available Git skill
-covers the relevant responsibility, and repository policy plus host or Git
-tools covers it when the plugin is absent. The guide includes conditional
-skill mappings and policy changes to review. Installing another provider
-alone does not change existing fully qualified Superpowers calls.
-
 ## Requirements
 
 Git is required for repository operations. A host-managed workspace tool can
 be used when available; it is not required. A requested pull request needs an
 available repository-host integration. No other skill plugin is required.
+Follow applicable project instructions and any explicit policy setup requirements.
 
 ## Boundaries
 
 - Skill selection alone does not create a worktree, branch, commit, merge, pull
   request, or push. Reuse a suitable workspace and task branch first.
 - Read the target repository's branch, workspace, review, and cleanup policy,
-  including a local `AGENTS.local.md` when present.
+  including `AGENTS.local.md` when present or required. Verify rules material
+  to the actual operation rather than requiring every optional template field.
   Do not assume a default branch name, worktree location, or ownership from
   another repository.
 - Routine clone/fetch operations and commits on an assigned branch follow the
@@ -149,21 +167,7 @@ available repository-host integration. No other skill plugin is required.
 - Retain a useful branch or worktree for review or reuse. Do not force cleanup
   at the end of every task. Track who owns newly created resources and inspect
   real Git state before reusing or deleting one after an interrupted task.
-- These skills run when invoked. They do not provide a background monitor for
-  chats that end unexpectedly; a host lifecycle integration is needed for
-  continuous orphan detection.
-- The Git workflows do not require `dev-skills` or `research-skills`. Their
-  callers may use these skills when installed, but can follow the host and
-  repository's Git procedure without installing this plugin.
-- Use the project's existing checks before integration. This plugin does not
-  define development tests, research evidence, release versions, or schema
-  migration policy.
-- When a project configures topic work items, forward actual code branch names,
-  SHAs, merge or abandonment outcomes, and checks to an available compatible
-  document workflow. If none is installed, use the project's local
-  `.docs-schema` and normal file tools.
-  Document records stay on the document repository's existing main branch;
-  only code work may need a new branch.
+- Use the project's existing checks before integration.
 
 These skills were adapted from the MIT-licensed
 [Superpowers project](https://github.com/obra/superpowers). The original

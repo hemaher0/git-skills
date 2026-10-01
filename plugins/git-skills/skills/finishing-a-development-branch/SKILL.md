@@ -10,13 +10,27 @@ branch. Finishing a task does not itself authorize a merge, direct commit, or
 push to the primary branch, and it does not require immediate branch or
 worktree cleanup.
 
+A routine authorized commit uses the commit-review workflow without requiring
+this branch-finishing procedure. Use this skill when a handoff, publication,
+integration, or preservation outcome needs coordination.
+
 ## Establish the Actual State
 
-Read the target repository's `AGENTS.md`, optional `AGENTS.local.md`, and any
-referenced Git policy. Filled local fields define its target, review path,
-remote transport, escalation behavior, and resource retention; placeholders
-supply no rule or host permission. Honor an integration choice the user has
-already made without asking for it again.
+Read applicable repository instructions, including `AGENTS.md`,
+`AGENTS.local.md` when present or required, and referenced Git policy. Check the
+target, review path, integration method, execution, and retention rules that
+apply to the chosen outcome.
+
+The [project policy template](../../templates/AGENTS.md) is an optional aid;
+use an existing policy home when one governs the project. The
+[local template](../../templates/AGENTS.local.md) is only for selected host/path
+overrides. Shared rules and inspected Git/approval state need no local file.
+Unrelated or unset optional fields do not block
+this work. Honor explicit project requirements for policy setup, and resolve
+an essential missing fact, rule, or authorization before the operation it
+affects. Read-only inspection may proceed. Policy files do not grant host
+permissions. Honor an integration choice the user has already made without
+asking for it again, within actual host controls.
 
 Inspect the branch or detached HEAD, intended target, HEAD and target SHAs,
 uncommitted and untracked changes, upstream and remote state, attached pull
@@ -54,9 +68,9 @@ create a document branch or a second work history.
   workspace for feedback. Do not delete or archive merely because this task
   ended or a pull request was opened or merged.
 - **Request review:** Confirm the diff and target, follow the repository's
-  publication rules, and use `git-skills:reviewing-before-push` to verify that
-  the outgoing commits and destination match their existing content reviews
-  before pushing or publishing through a host integration. Review the pull
+  publication rules, and verify that the outgoing commits and destination
+  match their existing content reviews before pushing or publishing through a
+  host integration. Review the pull
   request's own audience and text before creating it. Opening a pull request
   does not change the primary branch. Preserve the branch and a usable
   workspace for follow-up.
@@ -89,8 +103,6 @@ this skill runs. Creating a branch, worktree, branch commit, or pull request is
 not this gate. A sandbox or host escalation request is a separate permission
 matter governed by the local policy and actual host controls.
 
-Before a push to the primary branch, also apply `git-skills:reviewing-before-push`; the
-integration decision and publication verification answer different questions.
 If integration creates a commit, apply `git-skills:reviewing-before-commit` before its
 creation, including merge, squash, cherry-pick, and resolved rebase commits.
 

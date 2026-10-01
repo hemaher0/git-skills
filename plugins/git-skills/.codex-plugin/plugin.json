@@ -1,7 +1,7 @@
 {
   "name": "git-skills",
   "version": "0.1.0",
-  "description": "Policy-aware Git workspace reuse, parallel handoff, pre-commit secret and disclosure review, push verification, and primary-branch integration workflows.",
+  "description": "Git workflows for branch and workspace management, pre-commit secret and disclosure review, push verification, and integration.",
   "author": {
     "name": "hemaher0",
     "url": "https://github.com/hemaher0"
@@ -12,8 +12,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Git Skills",
-    "shortDescription": "Git workspace decisions and branch handoff",
-    "longDescription": "Reuse branches and worktrees, coordinate concurrent writers, review candidate content for secrets and disclosure scope before commit, verify reviewed commits match the push destination, and require a decision before changing the primary branch.",
+    "shortDescription": "Git branch, workspace, and commit workflows",
+    "longDescription": "Decide whether to reuse or create branches and workspaces according to repository policy. Review candidate content and messages for secrets and disclosure scope before committing, verify reviewed commits match the push destination, and integrate changes according to repository policy and user authorization.",
     "developerName": "hemaher0",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],

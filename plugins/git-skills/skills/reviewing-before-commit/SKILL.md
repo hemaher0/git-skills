@@ -14,17 +14,33 @@ permission question or authorize a push.
 
 ## Establish the Candidate
 
-Read the repository's `AGENTS.md`, optional `AGENTS.local.md`, secret-handling
-and disclosure policy, and required commit checks. Establish the intended
-disclosure scope from existing instructions: public, named private audiences
-and destinations, or explicitly local-only. A missing remote does not itself
-establish a local-only policy. If the scope is unspecified, assess the content
-as potentially public rather than inventing a private audience; resolve a
-material classification question only when needed.
+Read applicable repository instructions, including `AGENTS.md`,
+`AGENTS.local.md` when present or required, secret-handling and disclosure
+policy, and required commit checks. Establish the rules material to this
+candidate, its target, and intended disclosure scope.
+
+The [project policy template](../../templates/AGENTS.md) is an optional aid;
+use an existing policy home when one governs the project. The
+[local template](../../templates/AGENTS.local.md) is only for selected host/path
+overrides. Shared rules and inspected Git/approval state need no local file.
+Unrelated or unset optional fields do not block
+this work. Honor explicit project requirements for policy setup, and resolve
+an essential missing fact, rule, or authorization before the operation it
+affects. Read-only inspection may proceed. Policy files do not grant host
+permissions; existing user authorization and actual host controls still apply.
+
+Establish the intended disclosure scope from existing instructions: public,
+named private audiences and destinations, or explicitly local-only. A missing
+remote does not itself establish a local-only policy. If the scope is
+unspecified, assess the content as potentially public rather than inventing a
+private audience; resolve a material classification question only when needed.
 
 Identify the branch, intended parents, actual staged tree, and intended commit
-message. A direct primary-branch commit also needs the integration decision in
-`git-skills:finishing-a-development-branch`.
+message. For a direct primary-branch commit, verify that existing user
+authorization and project policy cover the actual target and candidate.
+Use `git-skills:finishing-a-development-branch` when branch handoff, publication,
+or integration needs coordination; an ordinary authorized commit does not
+invoke that whole lifecycle solely to recheck permission.
 
 Account for the history retained through the intended parents. If adopting a
 wider disclosure scope or inheriting unreviewed history, verify that ancestry

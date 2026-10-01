@@ -11,11 +11,20 @@ create a branch or worktree.
 
 ## Read Policy and Inspect State
 
-Read the target repository's `AGENTS.md`, optional `AGENTS.local.md`, and any
-referenced Git policy. Filled local fields specify that repository's branch,
-parallel-agent, remote-Git, and escalation choices; placeholders supply no
-rule and do not grant host permissions. Follow the user's existing instructions
-and the host's actual permission controls.
+Read applicable repository instructions, including `AGENTS.md`,
+`AGENTS.local.md` when present or required, and referenced Git policy. Establish
+the branch, workspace, ownership, and execution rules material to the intended
+operation from those instructions and inspected state.
+
+The [project policy template](../../templates/AGENTS.md) is an optional aid;
+use an existing policy home when one governs the project. The
+[local template](../../templates/AGENTS.local.md) is only for selected host/path
+overrides. Shared rules and inspected Git/approval state need no local file.
+Unrelated or unset optional fields do not block
+this work. Honor explicit project requirements for policy setup, and resolve
+an essential missing fact, rule, or authorization before the operation it
+affects. Read-only inspection may proceed. Policy files do not grant host
+permissions; follow the user's existing instructions and actual host controls.
 
 Inspect the current branch or detached HEAD, `git status --porcelain -uall`,
 `git worktree list --porcelain`, and available host-managed workspaces. Identify
@@ -29,7 +38,7 @@ task needs current remote data or a checkout; they do not by themselves require
 a separate user decision. If sandbox DNS is known to be blocked, select the
 configured working route before running the command. After a new failure, do
 not retry the same blocked route. Use outside-sandbox execution according to
-the user's instructions, any filled local policy, and actual host approval
+the user's instructions, applicable project policy, and actual host approval
 rules; otherwise use an available host integration or report the specific
 blocker. Do not put credentials in policy files or command output.
 
