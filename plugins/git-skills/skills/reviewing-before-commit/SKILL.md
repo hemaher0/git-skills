@@ -19,18 +19,10 @@ Read applicable repository instructions, including `AGENTS.md`,
 policy, and required commit checks. Establish the rules material to this
 candidate, its target, and intended disclosure scope.
 
-The [project policy template](../../templates/AGENTS.md) is an optional aid;
-use an existing policy home when one governs the project. The
-[local configuration template](../../templates/AGENTS.local.md) supplies the
-package section for root `AGENTS.local.md`, created or updated during installation
-even when no host/path overrides are needed. Follow the source README for its
-instruction connection. Keep shared rules in their policy home and inspect
-Git/approval state directly. Ordinary Git work does not initialize installation
-configuration; unrelated or unset optional fields do not block this work.
-Honor explicit project requirements for policy setup, and resolve
-an essential missing fact, rule, or authorization before the operation it
-affects. Read-only inspection may proceed. Policy files do not grant host
-permissions; existing user authorization and actual host controls still apply.
+Resolve an essential missing fact, rule, or authorization before the operation
+it affects; unrelated optional settings do not block the task. Read-only
+inspection may proceed. Existing user authorization and actual host controls
+govern operations; policy files do not grant host permissions.
 
 Establish the intended disclosure scope from existing instructions: public,
 named private audiences and destinations, or explicitly local-only. A missing

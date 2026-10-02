@@ -16,18 +16,10 @@ Read applicable repository instructions, including `AGENTS.md`,
 the branch, workspace, ownership, and execution rules material to the intended
 operation from those instructions and inspected state.
 
-The [project policy template](../../templates/AGENTS.md) is an optional aid;
-use an existing policy home when one governs the project. The
-[local configuration template](../../templates/AGENTS.local.md) supplies the
-package section for root `AGENTS.local.md`, created or updated during installation
-even when no host/path overrides are needed. Follow the source README for its
-instruction connection. Keep shared rules in their policy home and inspect
-Git/approval state directly. Ordinary Git work does not initialize installation
-configuration; unrelated or unset optional fields do not block this work.
-Honor explicit project requirements for policy setup, and resolve
-an essential missing fact, rule, or authorization before the operation it
-affects. Read-only inspection may proceed. Policy files do not grant host
-permissions; follow the user's existing instructions and actual host controls.
+Resolve an essential missing fact, rule, or authorization before the operation
+it affects; unrelated optional settings do not block the task. Read-only
+inspection may proceed. Existing user authorization and actual host controls
+govern operations; policy files do not grant host permissions.
 
 Inspect the current branch or detached HEAD, `git status --porcelain -uall`,
 `git worktree list --porcelain`, and available host-managed workspaces. Identify

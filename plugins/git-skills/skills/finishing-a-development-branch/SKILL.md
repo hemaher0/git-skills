@@ -21,19 +21,10 @@ Read applicable repository instructions, including `AGENTS.md`,
 target, review path, integration method, execution, and retention rules that
 apply to the chosen outcome.
 
-The [project policy template](../../templates/AGENTS.md) is an optional aid;
-use an existing policy home when one governs the project. The
-[local configuration template](../../templates/AGENTS.local.md) supplies the
-package section for root `AGENTS.local.md`, created or updated during installation
-even when no host/path overrides are needed. Follow the source README for its
-instruction connection. Keep shared rules in their policy home and inspect
-Git/approval state directly. Ordinary Git work does not initialize installation
-configuration; unrelated or unset optional fields do not block this work.
-Honor explicit project requirements for policy setup, and resolve
-an essential missing fact, rule, or authorization before the operation it
-affects. Read-only inspection may proceed. Policy files do not grant host
-permissions. Honor an integration choice the user has already made without
-asking for it again, within actual host controls.
+Resolve an essential missing fact, rule, or authorization before the operation
+it affects; unrelated optional settings do not block the task. Honor an
+integration choice already made within existing authority and actual host
+controls. Read-only inspection may proceed while dependent work is unresolved.
 
 Inspect the branch or detached HEAD, intended target, HEAD and target SHAs,
 uncommitted and untracked changes, upstream and remote state, attached pull

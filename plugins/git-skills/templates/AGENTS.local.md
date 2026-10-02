@@ -1,8 +1,8 @@
 # Local Git Configuration
 
 <!-- Create or merge this package section into root AGENTS.local.md during
-installation. Keep the status even when no local overrides are needed; fill
-selected fields and remove unused fields/headings. Preserve existing values
+installation. Mark configuration complete only after required values or their
+existing authoritative sources are resolved. Remove unused fields/headings. Preserve existing values
 and other packages' sections. Shared Git policy stays in its existing home.
 Inspect branch/remote/checkout state from Git and actual approvals from the
 host; keep current ownership and review coverage in the existing work record.
@@ -13,7 +13,8 @@ or override policy. -->
 
 ## Git Configuration Status
 
-- Local overrides: `<None. Use effective project settings and skill defaults. / Configured; see below. / Pending; identify the local decision.>`
+- Configuration status: `<Complete / Incomplete: identify required unresolved values>`
+- Existing Git policy source, when applicable: `<actual path to the governing project Git policy>`
 
 ## Local Git Access
 
