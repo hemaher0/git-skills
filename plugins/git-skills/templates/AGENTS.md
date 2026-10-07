@@ -20,9 +20,15 @@ this template is not a complete-policy prerequisite for every Git operation. -->
 - History shape and allowed integration/task-update methods: `<per-delivery-path project rules>`
 - Published-history and resource-retention exceptions: `<existing project rules>`
 
-Use the responsible workspace, commit-review, and finishing workflows for
-actual Git decisions and checks. Existing authorization and host controls
-remain authoritative. Record actual resource ownership and reviewed commit
-coverage in the existing work record; inspect current Git/host state as needed.
-Read and follow root `AGENTS.local.md` when it exists. Local configuration cannot
-broaden disclosure, integration, or cleanup permissions.
+When the current host lists matching workspace, commit-review, or branch-
+finishing skills, use them for the decisions they own. Do not infer skill
+availability from files in a vendor tree or cache. If a companion skill is
+unavailable, follow this project's established Git procedure and ordinary Git
+tools: inspect actual workspace and ownership state; review each candidate tree
+and message for secrets and disclosure scope; verify outgoing commits and
+their destination; obtain required authorization before changing the primary
+branch; and retain or remove resources only after checking their real state.
+Existing authorization and host controls remain authoritative. Record actual
+resource ownership and reviewed commit coverage in the existing work record.
+Read and follow root `AGENTS.local.md` when it exists. Local configuration
+cannot broaden disclosure, integration, or cleanup permissions.

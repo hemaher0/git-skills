@@ -5,6 +5,9 @@ description: Use before creating or recreating Git commits to review candidate c
 
 # Reviewing Before Commit
 
+For a host-listed companion, read or invoke its exact installed name and path
+from that list. Do not substitute an adjacent vendor or cache copy.
+
 Decide whether content may enter repository history before creating the
 commit. Check both secrets and whether the content may be disclosed within
 the commit's intended scope. This applies to task branches and private
@@ -33,9 +36,16 @@ private audience; resolve a material classification question only when needed.
 Identify the branch, intended parents, actual staged tree, and intended commit
 message. For a direct primary-branch commit, verify that existing user
 authorization and project policy cover the actual target and candidate.
-Use `git-skills:finishing-a-development-branch` when branch handoff, publication,
-or integration needs coordination; an ordinary authorized commit does not
-invoke that whole lifecycle solely to recheck permission.
+When branch handoff, publication, or integration needs coordination, use
+`finishing-a-development-branch` if the current host lists it as available.
+Do not infer availability from a skill folder in a vendor tree or cache. If it
+is unavailable, follow the project's equivalent Git procedure or coordinate
+the lifecycle directly: inspect the actual branch, target, dirty and remote
+state; run the required checks; verify outgoing commits and destination against
+their review coverage; obtain any required authorization before changing the
+primary branch; and retain or clean up resources deliberately. An ordinary
+authorized commit does not invoke that whole lifecycle solely to recheck
+permission.
 
 Account for the history retained through the intended parents. If adopting a
 wider disclosure scope or inheriting unreviewed history, verify that ancestry

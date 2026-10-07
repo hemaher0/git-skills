@@ -5,14 +5,18 @@ description: Use when branch work needs a verified handoff, pull request, integr
 
 # Finishing a Development Branch
 
+For a host-listed companion, read or invoke its exact installed name and path
+from that list. Do not substitute an adjacent vendor or cache copy.
+
 Separate routine work on a task branch from changing the repository's primary
 branch. Finishing a task does not itself authorize a merge, direct commit, or
 push to the primary branch, and it does not require immediate branch or
 worktree cleanup.
 
-A routine authorized commit uses the commit-review workflow without requiring
-this branch-finishing procedure. Use this skill when a handoff, publication,
-integration, or preservation outcome needs coordination.
+A routine authorized commit still needs the repository's candidate content,
+message, secret, and disclosure review, but it does not require this branch-
+finishing procedure. Use this skill when a handoff, publication, integration,
+or preservation outcome needs coordination.
 
 ## Establish the Actual State
 
@@ -40,10 +44,16 @@ work that has not been committed.
 ## Hand Off Parallel Work
 
 A writing subagent may commit on its assigned branch under the task and
-repository policy, after applying `git-skills:reviewing-before-commit` to the candidate
-tree, message, and disclosure scope. It returns the actual branch or detached
-commit SHA, checkout path, dirty state, changed files, check results, and the
-commit review's scope and coverage. The coordinator
+repository policy after the candidate tree, message, secrets, and disclosure
+scope have been reviewed. Use `reviewing-before-commit` when the current host
+lists it as available; do not infer availability from a skill folder in a
+vendor tree or cache. Otherwise follow the project's equivalent procedure or
+inspect the staged paths, diff, relevant staged blobs, and message directly,
+run configured index-aware secret checks, exclude prohibited or out-of-scope
+content, and verify that the resulting commit matches the reviewed candidate.
+The subagent returns the actual branch or detached commit SHA, checkout path,
+dirty state, changed files, check results, and the commit review's scope and
+coverage. The coordinator
 checks that state independently and serializes integration into a shared
 target. A worker does not merge, fast-forward, cherry-pick, commit directly
 onto, or push the primary branch on its own.
@@ -52,8 +62,12 @@ When project instructions configure work items, forward actual branch names,
 target and result SHAs, checks, and merge or abandonment outcomes to the
 assigned work-item owner. In parallel work, use linked child records when the
 local schema supports them; otherwise send events to one designated writer.
-Use the project's `.docs-schema` if no document workflow is installed. Do not
-create a document branch or a second work history.
+Follow the documentation or record workflow listed by the current host or
+designated by project instructions. If neither supplies one, use an existing
+project `.docs-schema` procedure when configured; otherwise keep the required
+events in the existing handoff or work record. Do not look for an unlisted
+workflow in vendor or cache directories, and do not create a document branch
+or a second work history.
 
 ## Choose the Outcome
 
@@ -97,8 +111,12 @@ this skill runs. Creating a branch, worktree, branch commit, or pull request is
 not this gate. A sandbox or host escalation request is a separate permission
 matter governed by the local policy and actual host controls.
 
-If integration creates a commit, apply `git-skills:reviewing-before-commit` before its
-creation, including merge, squash, cherry-pick, and resolved rebase commits.
+If integration creates a commit, use `reviewing-before-commit` before creation
+when the current host lists that skill as available. Otherwise apply the
+project's equivalent procedure or directly review the exact generated tree,
+message, secrets, and disclosure scope before merge, squash, cherry-pick, or
+resolved rebase commits. Keep required hooks and index-aware checks enabled,
+and verify the resulting commit against the reviewed candidate.
 
 If the target, history shape, or permitted method is genuinely unclear or the
 policy fields conflict, resolve that before integration rather than guessing
@@ -106,9 +124,11 @@ a merge strategy.
 
 If checks fail or the target moves, inspect the new state and re-evaluate the
 reviewable result. Do not force-push a protected branch or bypass a failed
-check. For linked OpenSpec changes, pass the adopted implementation, merged
-SHA, checks, and delta spec to its sync/archive workflow; unadopted
-requirements do not enter main specs.
+check. For linked OpenSpec changes, follow the project's configured OpenSpec
+sync/archive procedure when it is available. Otherwise return the adopted
+implementation, merged SHA, checks, and delta spec to the designated OpenSpec
+owner for later processing; do not search vendor or cache files for an
+unlisted workflow. Unadopted requirements do not enter main specs.
 
 ## Retain and Clean Up Deliberately
 

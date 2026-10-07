@@ -5,6 +5,9 @@ description: Use before Git work when deciding whether to reuse or create a bran
 
 # Using Git Worktrees
 
+For a host-listed companion, read or invoke its exact installed name and path
+from that list. Do not substitute an adjacent vendor or cache copy.
+
 Choose the smallest workspace change that lets the task proceed safely. A new
 task, an available worktree tool, or a subagent by itself is not a reason to
 create a branch or worktree.
@@ -105,7 +108,13 @@ Read the repository's setup instructions and lockfiles before dependency or
 build commands. Run the narrowest useful baseline check and report the
 workspace, branch, setup performed, and any baseline failure.
 
-Before creating commits in the chosen workspace, use `git-skills:reviewing-before-commit`
-to check actual staged content and messages for secrets and allowed disclosure
-scope. Choosing a task branch or private checkout does not exempt its commits
+Before creating commits in the chosen workspace, check whether
+`reviewing-before-commit` is listed as available by the current host. Do not
+infer availability from a skill folder in a vendor tree or cache. When it is
+available, use it for the candidate review. Otherwise follow the project's
+equivalent procedure, or directly establish the intended disclosure scope;
+inspect the staged paths, diff, relevant staged blobs, and proposed message;
+run configured index-aware secret checks; exclude prohibited or out-of-scope
+content; and verify that the created commit matches the reviewed tree and
+message. Choosing a task branch or private checkout does not exempt its commits
 from that review.
