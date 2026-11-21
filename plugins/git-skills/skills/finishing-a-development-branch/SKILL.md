@@ -20,10 +20,10 @@ or preservation outcome needs coordination.
 
 ## Establish the Actual State
 
-Read applicable repository instructions, including `AGENTS.md` or `CLAUDE.md`,
-`AGENTS.local.md` when present or required, and referenced Git policy. Check the
-target, review path, integration method, execution, and retention rules that
-apply to the chosen outcome.
+Read applicable repository instructions, including whichever of `AGENTS.md` and
+`CLAUDE.md` exist, `AGENTS.local.md` when present or required, and referenced
+Git policy. Check the target, review path, integration method, execution, and
+retention rules that apply to the chosen outcome.
 
 Resolve an essential missing fact, rule, or authorization before the operation
 it affects; unrelated optional settings do not block the task. Honor an

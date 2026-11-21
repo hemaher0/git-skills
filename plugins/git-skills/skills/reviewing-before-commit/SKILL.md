@@ -17,10 +17,10 @@ permission question or authorize a push.
 
 ## Establish the Candidate
 
-Read applicable repository instructions, including `AGENTS.md` or `CLAUDE.md`,
-`AGENTS.local.md` when present or required, secret-handling and disclosure
-policy, and required commit checks. Establish the rules material to this
-candidate, its target, and intended disclosure scope.
+Read applicable repository instructions, including whichever of `AGENTS.md` and
+`CLAUDE.md` exist, `AGENTS.local.md` when present or required, secret-handling
+and disclosure policy, and required commit checks. Establish the rules material
+to this candidate, its target, and intended disclosure scope.
 
 Resolve an essential missing fact, rule, or authorization before the operation
 it affects; unrelated optional settings do not block the task. Read-only
