@@ -17,7 +17,7 @@ permission question or authorize a push.
 
 ## Establish the Candidate
 
-Read applicable repository instructions, including `AGENTS.md`,
+Read applicable repository instructions, including `AGENTS.md` or `CLAUDE.md`,
 `AGENTS.local.md` when present or required, secret-handling and disclosure
 policy, and required commit checks. Establish the rules material to this
 candidate, its target, and intended disclosure scope.

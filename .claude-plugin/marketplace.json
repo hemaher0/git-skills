@@ -1,0 +1,16 @@
+{
+  "name": "hemaher0-git-skills",
+  "owner": {
+    "name": "hemaher0",
+    "url": "https://github.com/hemaher0"
+  },
+  "plugins": [
+    {
+      "name": "git-skills",
+      "source": "./plugins/git-skills",
+      "description": "Git workflows for branch and workspace management, pre-commit secret and disclosure review, push verification, and integration.",
+      "version": "0.1.0",
+      "category": "productivity"
+    }
+  ]
+}

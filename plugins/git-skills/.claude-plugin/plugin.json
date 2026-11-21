@@ -1,0 +1,20 @@
+{
+  "name": "git-skills",
+  "version": "0.1.0",
+  "description": "Git workflows for branch and workspace management, pre-commit secret and disclosure review, push verification, and integration.",
+  "author": {
+    "name": "hemaher0",
+    "url": "https://github.com/hemaher0"
+  },
+  "repository": "https://github.com/hemaher0/git-skills",
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "worktree",
+    "branch",
+    "commit",
+    "push",
+    "merge",
+    "integration"
+  ]
+}

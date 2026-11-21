@@ -14,7 +14,7 @@ create a branch or worktree.
 
 ## Read Policy and Inspect State
 
-Read applicable repository instructions, including `AGENTS.md`,
+Read applicable repository instructions, including `AGENTS.md` or `CLAUDE.md`,
 `AGENTS.local.md` when present or required, and referenced Git policy. Establish
 the branch, workspace, ownership, and execution rules material to the intended
 operation from those instructions and inspected state.

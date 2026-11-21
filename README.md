@@ -1,7 +1,7 @@
 # git-skills
 
-Reusable Codex skills for Git workspace selection, commit review, branch
-handoff, publication, integration, and resource retention.
+Reusable Codex and Claude Code skills for Git workspace selection, commit
+review, branch handoff, publication, integration, and resource retention.
 
 | Skill | Role |
 | --- | --- |
@@ -12,7 +12,9 @@ handoff, publication, integration, and resource retention.
 The native skill source is `plugins/git-skills/skills/`. Keep the whole source
 checkout so each selected skill can resolve its packaged files and this
 repository can be updated in place. These locations and symlink behavior follow
-the [official Codex skill discovery guidance](https://learn.chatgpt.com/docs/build-skills).
+the [official Codex skill discovery
+guidance](https://learn.chatgpt.com/docs/build-skills). For Claude Code, see
+[Use with Claude Code](#use-with-claude-code).
 
 ## Install for a project
 
@@ -215,16 +217,67 @@ use when duplicate names exist. Global source updates affect every session
 using its links, while each project-local source can remain on its own version
 and expose a different subset.
 
+## Use with Claude Code
+
+Claude Code discovers project skills in `.claude/skills/<name>/SKILL.md` and
+personal skills in `~/.claude/skills/<name>/SKILL.md`. The skill folders in
+this repository work there without conversion. Keep the source checkout
+described above and expose the selected skills from the project root, for
+example:
+
+```bash
+mkdir -p .claude/skills
+for skill in using-git-worktrees reviewing-before-commit; do
+  destination=".claude/skills/$skill"
+  if [ -e "$destination" ] || [ -L "$destination" ]; then
+    printf 'Preserve existing path: %s\n' "$destination" >&2
+    continue
+  fi
+  ln -s "../../.agents/vendor/git-skills/plugins/git-skills/skills/$skill" "$destination"
+done
+```
+
+The link targets are relative to `.claude/skills`. For personal skills, run
+the same loop with `$HOME/.claude/skills` and the global source checkout under
+`$HOME/.agents/vendor`; the relative targets stay the same. Where symbolic
+links are unavailable, such as Windows without Developer Mode, copy each
+selected folder completely instead and copy it again after updating the source.
+
+Use a skill by its name, for example `/reviewing-before-commit`, or let Claude
+select it from its description. Confirm that the name appears in the session's
+skill list; start a new session if a newly added folder is not listed.
+
+Claude Code can also install this repository as a plugin marketplace:
+
+```bash
+claude plugin marketplace add hemaher0/git-skills
+claude plugin install git-skills@hemaher0-git-skills
+```
+
+Inside a session, `/plugin marketplace add hemaher0/git-skills` and
+`/plugin install <plugin>@<marketplace>` do the same. Plugin skills are
+namespaced, for example `/git-skills:reviewing-before-commit`. Plugin installation writes
+user-level configuration and a managed cache, separate from the folders above; a
+skill exposed both ways appears twice.
+
+Claude Code reads `CLAUDE.md`. It reads `AGENTS.md` only when no `CLAUDE.md`
+exists (Claude Code 2.1.277 or later) and does not read `AGENTS.local.md` by
+itself. When a project keeps shared instructions in `AGENTS.md` and also has a
+`CLAUDE.md`, add an `@AGENTS.md` line to `CLAUDE.md`. An instruction in
+`AGENTS.md` to read `AGENTS.local.md` keeps local configuration in effect.
+
 ## Optional plugin compatibility
 
 This repository also retains a native plugin package at `plugins/git-skills/`,
-with its manifest at `plugins/git-skills/.codex-plugin/plugin.json`. A host
-that supports managed Codex plugins can install or enable that package through
-its plugin workflow as an alternative distribution route. Plugin enablement
-and its shared cache are separate from the project and global `.agents/skills`
-links above; enabling a plugin may expose another copy of the same skill names.
-Follow the host's plugin scope and update controls rather than treating a cache
-path as proof that a skill is available.
+with its manifest at `plugins/git-skills/.codex-plugin/plugin.json`. A host that
+supports managed Codex plugins can install or enable that package through its
+plugin workflow as an alternative distribution route. The same package has a
+Claude Code manifest at `plugins/git-skills/.claude-plugin/plugin.json`, listed
+by the `hemaher0-git-skills` marketplace in `.claude-plugin/marketplace.json`.
+Plugin enablement and its shared cache are separate from the project and global
+`.agents/skills` links above; enabling a plugin may expose another copy of the
+same skill names. Follow the host's plugin scope and update controls rather than
+treating a cache path as proof that a skill is available.
 
 ## Requirements and boundaries
 
