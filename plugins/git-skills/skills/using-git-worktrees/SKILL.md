@@ -1,6 +1,6 @@
 ---
 name: using-git-worktrees
-description: Use before Git work when deciding whether to reuse or create a branch or checkout, especially with parallel writers or unrelated local changes
+description: Choose or reuse a Git branch or checkout, especially with parallel writers or unrelated local changes. Also use when a Git command in native Windows Codex asks for approval again or a worktree metadata write is denied.
 ---
 
 # Using Git Worktrees
@@ -11,6 +11,13 @@ from that list. Do not substitute an adjacent vendor or cache copy.
 Choose the smallest workspace change that lets the task proceed safely. A new
 task, an available worktree tool, or a subagent by itself is not a reason to
 create a branch or worktree.
+
+## Run Git Under Native Windows Codex
+
+Use [native Windows Git execution](references/windows-codex.md) if a
+Git command asks for approval again, the prompt shows the bundled
+`pwsh.exe`, or a Git metadata write is denied. It applies to ordinary
+checkouts and linked worktrees, including those created by Codex.
 
 ## Read Policy and Inspect State
 
